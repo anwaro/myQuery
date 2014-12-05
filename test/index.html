@@ -1,0 +1,57 @@
+	<head>
+		<title>myQuery test</title>
+		<script src="src/myQuery.js"></script>
+	</head>
+	<body>
+		<div id="test">
+			<div id="in">
+		
+			</div>
+		</div>
+		<div id="test2">
+		
+		</div>
+		<div id="firstWithClass" class="tak"> </div>
+		<div id="nextWithClass" class="tak"> </div>
+		<div id="elemntWithText">
+		  Lorem impsum
+		</div>
+		<script>
+		  //
+			$$.load(function(){
+			  alert("page id loaded");
+			  });
+			  
+			// currently is not exist
+			//$$.ajax();
+			
+			var testDiv = $$("#test");
+			
+			testDiv.height(100).width("100px") //defoult is px
+			
+			testDiv.css("background", "gray").css({margin:"120px",padding:"10px"});
+			
+			testDiv.fadeOut(2000,function(){$$("#test").fadeIn(2000)});
+			
+			$$("#firstWithClass").addClass("no");
+			
+			$$("#nextWithClass").addClass("tak");
+			
+			if($$("#firstWithClass").hasClass("tak"))
+			{
+			  console.log("element have not class ");
+			}
+			  
+			$$("#elemntWithText").empty();
+			  
+			$$("#elemntWithOutText").setText("This is elemnt without text");
+			
+			$(testDiv.parent()).data("key", "value");
+			
+			var savedData = $(testDiv.parent()).data("key");
+			
+			$(testDiv.parent()).removeData("key", "value");
+			 
+		</script>
+	</body>
+</html>
