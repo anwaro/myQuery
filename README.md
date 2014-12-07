@@ -152,3 +152,16 @@ Metoda usuwa ciasteczko o nazwie przkazanej jako argument
   $$.clone();
 ```
 Metoda zwraca kopie danego dowolnej zmiennej
+
+####load
+```js
+  $$.load();
+```
+Metoda wykonuje funkcjie przekazaną jako argument po załadowaniu się strony
+
+
+####delay
+```js
+  $$.delay();
+```
+Metoda wykonuje funkcjie przekazaną jako argument po czasie podanym jako drugi argument (domyślnie 1s)
