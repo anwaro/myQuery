@@ -5,8 +5,6 @@ Mała biblioteka stworzona do manipulacji objektami DOM
 
 Biblioteka zawiera podstawowe funkcjie związane z elementami dokumentu html
 
-##Metody związane z elementami DOM
-================================
 ```js
   $$(selektor);
 ```
@@ -19,6 +17,8 @@ Funkcja ta może przyjmować:
 
 Funkcja ta zwraca zawsze jeden objekt zwiazane jest z tym, że dalej możemy wykożystać wszystkie funkcjie jakie można wywołac na elemencie używając do tego np. document.getElementById
 
+##Metody związane z elementami DOM
+================================
 ####css
 ```js
   $$(selektor).css();
@@ -86,6 +86,69 @@ Metoda zwraca wartość logiczną informację na temat posiadania danej klasy
 Metoda usuwa klase 
 
 
+####setText
+```js
+  $$(selektor).setText();
+```
+Ustawia tekst w danym elemencie 
+
+####empty
+```js
+  $$(selektor).emptyt();
+```
+Czyści dany element
 
 
+####height
+```js
+  $$(selektor).height();
+```
+Ustawia wysokość elementu na wartość podaną jako argument jażeli podamy samą liczbę wartość będzie wyrażona w px. Metodę tą posiadają tylko objekty które nie posiadają atrybutu height
 
+####width
+```js
+  $$(selektor).width();
+```
+Ustawia szerokość elementu na wartość podaną jako argument jażeli podamy samą liczbę wartość będzie wyrażona w px. Metodę tą posiadają tylko objekty które nie posiadają atrybutu width
+
+####data
+```js
+  $$(selektor).data();
+```
+Ustawia lub zwraca atrybut data o podanym kluczu. W przypadku przekazania jednego argumentu funkcja zwraca wartośc atrybutu data o danym kluczu, nadomiast przy podanu dwóch argumentów zostaje ustawiona atrybut data o podanym kluczu i danej wartości.
+
+####removeData
+```js
+  $$(selektor).removeData();
+```
+Usuwa atrybut data o danym kluczu
+
+####parent
+```js
+  $$(selektor).parent();
+```
+Zwraca objekt _myQuery z rodzicem danego elementu
+
+##Metody niezwiązane z elementami DOM
+================================
+
+####cookie
+```js
+  $$.cookie();
+```
+Metoda do działania na plikach cookie w zalężności od ilości argumentów funkcjia ustawia lub zwraca dane ciasteczko, i tak:
+- dla 3 argumentów metoda ustawia ciasteczko o nazwie podanym jako pierwszy argument, wartości podanej jako drugi argument i czasie podanym w trzecim argumencie (wartość podana w dniach)
+- dla 2 podabnie jak dla trzech lecz nie ustawia czasu wygaśnięcia ciasteczka
+- dla 1 zwraca wartość ciasteczka gdy nie jest ustawione zwraca false
+
+####removeCookie
+```js
+  $$.removeCookie();
+```
+Metoda usuwa ciasteczko o nazwie przkazanej jako argument
+
+####clone
+```js
+  $$.clone();
+```
+Metoda zwraca kopie danego dowolnej zmiennej
