@@ -10,9 +10,9 @@ function _myQuery(selector)
 { 
 	/* 
 	* ustalamy element objektu 
-	* jeżeli przekazujemy objekt przypisujemy go bezposrednio
+	* jezeli przekazujemy objekt przypisujemy go bezposrednio
 	* przeszukujemy dokument gdy przekazujemy nazwe 
-	* elementu objęty w "<>" tworzymy nowy objekt tego typu
+	* gdy otzrzymujemy element objety w "<>" tworzymy nowy objekt tego typu
 	* w innym przypadku tworzumy element "DIV"
 	*/
 	
@@ -33,7 +33,12 @@ function _myQuery(selector)
 		this.el = document.createElement("div");
 	}
 	
-	// funkcja ustalająca style elementu przyjmuje objekt z 
+	//sprawdzamy czy nie jest elementem IMG lub CANVAS
+ 	// dla nich nie definiujemy funkcji width i height
+ 		 
+ 	this.isSpecial = /img|canvas|iframe|table|tr|td|th|tbody|thead|tf/i.test(this.el.nodeName); 
+	
+	// funkcja ustalajaca style elementu przyjmuje objekt z 
 	// wlasciwosciami lub wlaciwosc i jej wartosc
 	this.el.css=function(property, value)
 	{
@@ -64,6 +69,11 @@ function _myQuery(selector)
 		return this;
 	}
 	
+	//sprawdzenie czy element jest ukryty
+	this.el.isHidden=function()
+	{
+		return (window.getComputedStyle(this).display === 'none');
+	}
 	
 	// ukrycie elementu
 	this.el.hide=function()
@@ -138,7 +148,7 @@ function _myQuery(selector)
 		return this;
 	}
 	
-	//sprawdzenie czy element zawiera daną klase
+	//sprawdzenie czy element zawiera dana klase
 	this.el.hasClass=function(className)
 	{
 		return this.classList.contains(className);
@@ -166,42 +176,45 @@ function _myQuery(selector)
 		return this;
 	}
 	
-	// ustawienie wysokosci
-	this.el.height=function(size)
+	if(!this.isSpecial)
 	{
-		if(typeof size =="undefined")
+		// ustawienie wysokosci
+		this.el.height=function(size)
 		{
-			return this.offsetHeight;
+			if(typeof size =="undefined")
+			{
+				return this.offsetHeight;
+			}
+			
+			if(size.toString().match(/px|pt|pc|cm|mm|in|%|em|en|ex/i))
+			{
+				this.style.height = size;
+			}
+			else
+			{
+				this.style.height = size+"px";
+			}		
+			return this;
 		}
 		
-		if(size.toString().match(/px|pt|pc|cm|mm|in|%|em|en|ex/i))
+		// ustawienie szerokosci elementu 
+		this.el.width=function(size)
 		{
-			this.style.height = size;
+			if(typeof size =="undefined")
+			{
+				return this.offsetWidth;
+			}
+		
+			if(size.toString().match(/px|pt|pc|cm|mm|in|%|em|en|ex/i))
+			{
+				this.style.width = size;
+			}
+			else
+			{
+				this.style.width = size+"px";
+			}		
+			return this;
 		}
-		else
-		{
-			this.style.height = size+"px";
-		}		
-		return this;
-	}
-	
-	// ustawienie szerokosci elementu 
-	this.el.width=function(size)
-	{
-		if(typeof size =="undefined")
-		{
-			return this.offsetWidth;
-		}
-	
-		if(size.toString().match(/px|pt|pc|cm|mm|in|%|em|en|ex/i))
-		{
-			this.style.width = size;
-		}
-		else
-		{
-			this.style.width = size+"px";
-		}		
-		return this;
 	}
 	
 	// ustawia lub zwraca wartosc atrybutu data o danym kluczu
