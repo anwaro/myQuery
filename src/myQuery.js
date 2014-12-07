@@ -245,9 +245,9 @@ function _myQuery(selector)
 		return new _myQuery(this.parentNode);
 	}
 	
-	this.el.addEvent(event,func)
+	this.el.addEvent=function(event,func)
 	{
-		myQuery.addEvent(this, event, fun);
+		myQuery.addEvent(this, event, func);
 		return this;
 	}
 	return this.el;	
@@ -341,7 +341,7 @@ myQuery.addEvent=function(element, event, func)
 	}
 	else
 	{
-		element[evnt] = func;
+		element[event] = func;
 	}
 }
 
