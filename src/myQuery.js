@@ -239,10 +239,10 @@ function _myQuery(selector)
 		return this;
 	}
 	
-	// zwucenie rodzica elementu
+	// zwucenie nowego objektu _myQuery dla rodzica
 	this.el.parent = function()
 	{
-		return this.parentNode;
+		return new _myQuery(this.parentNode);
 	}
 	
 	return this.el;	
