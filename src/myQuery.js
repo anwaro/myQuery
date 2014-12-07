@@ -20,9 +20,9 @@ function _myQuery(selector)
 	{
 		this.el = selector;
 	}
-	else if(selector.match(/^[<]{1}[a-z]+[>]{1}$/i))
+	else if(selector.match(/^<[a-z]+>$/i))
 	{
-		this.el = document.createElement(selector.replace(/</g, '').replace(/>/g, ''));
+		this.el = document.createElement(selector.replace(/<|>/g, ''));
 	}
 	else if(document.querySelector(selector))
 	{
