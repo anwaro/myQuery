@@ -36,7 +36,7 @@ function _myQuery(selector)
 	//sprawdzamy czy nie jest elementem IMG lub CANVAS
  	// dla nich nie definiujemy funkcji width i height
  		 
- 	this.isSpecial = /img|canvas|iframe|table|tr|td|th|tbody|thead|tf/i.test(this.el.nodeName); 
+ 	this.isSpecial = this.el.hasAttribute("height"); 
 	
 	// funkcja ustalajaca style elementu przyjmuje objekt z 
 	// wlasciwosciami lub wlaciwosc i jej wartosc
