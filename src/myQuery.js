@@ -344,4 +344,4 @@ myQuery.addEvent=function(element, event, func)
 		element[evnt] = func;
 	}
 }
-}
+
