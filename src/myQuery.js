@@ -245,6 +245,11 @@ function _myQuery(selector)
 		return new _myQuery(this.parentNode);
 	}
 	
+	this.el.addEvent(event,func)
+	{
+		myQuery.addEvent(this, event, fun);
+		return this;
+	}
 	return this.el;	
  }
  
@@ -321,4 +326,22 @@ myQuery.delay=function(callback,time)
 	{
 		setTimeout(function(){callback();},time||1000);
 	}
+}
+
+//funkcjia dodająca zdarzenie
+myQuery.addEvent=function(element, event, func)
+{
+	if (element.addEventListener)
+	{
+		element.addEventListener(event,func,false);
+	}
+	else if (element.attachEvent)
+	{
+		element.attachEvent("on"+event, func);
+	}
+	else
+	{
+		element[evnt] = func;
+	}
+}
 }
