@@ -271,37 +271,35 @@ $$ = myQuery;
  */
 myQuery.cookie=function(key,value,expires)
 {
-	if(typeof expires!="undefined")
+	if(arguments.length > 1)
 	{
-		var d = new Date();
-		d.setTime(d.getTime() + (expires*24*60*60*1000));
-		document.cookie = key + "=" + value + "; " + "expires="+d.toUTCString();
+		var expiresCookie =''
+		if(expires && typeof expires === "number")
+		{
+			var d = new Date();
+			d.setTime(d.getTime() + (expires*24*60*60*1000));
+			expiresCookie = "; expires="+d.toUTCString();
+		}
+		document.cookie = key + "=" + value + expiresCookie; 
+		
 	}
-	else if(typeof value!="undefined")
+	else if(arguments.length == 1)
 	{
-		document.cookie=key+"="+value;
-	}
-	else if(typeof key!="undefined")
-	{
-		var currentCookie = "; " + document.cookie;
-		var cookieArray = currentCookie.split("; " + key + "=");
+		var cookieArray = ("; " +document.cookie).split("; " + key + "=");
 		if (cookieArray.length == 2)
 		{
-			return cookieArray.pop().split(";").shift();
+			return  cookieArray.pop().split(";").shift();
 		}
 		else
 		{
-			return false;
+			return undefined;
 		}
-	}
-	else{
-		throw new Error("First parametr is undefined")
 	}
 }
 
 // usuwa dany plik cookie
 myQuery.deleteCookie=function( key ) {
-  document.cookie = key + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+	document.cookie = key + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
 // zwraca kopie dowolnego objektu 
